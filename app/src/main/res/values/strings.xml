@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MovieApp</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="pref_header_general">General</string>
+    <string name="pref_rating">Highest Rating</string>
+    <string name="pref_popularity">Popularity</string>
+    <string name="pref_sort_by">Sort by</string>
+    <string name="pref_sort_key">sort</string>
+
 </resources>
