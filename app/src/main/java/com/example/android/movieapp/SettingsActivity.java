@@ -1,10 +1,9 @@
 package com.example.android.movieapp;
 
 
+import android.os.Bundle;
 import android.preference.PreferenceActivity;
-
-import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -17,10 +16,20 @@ import java.util.prefs.PreferenceChangeListener;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivity implements PreferenceChangeListener{
+public class SettingsActivity extends AppCompatActivity{
 
     @Override
-    public void preferenceChange(PreferenceChangeEvent preferenceChangeEvent) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+    }
 
+    public static class PreferenceFragment extends android.preference.PreferenceFragment{
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_general);
+        }
     }
 }
+
