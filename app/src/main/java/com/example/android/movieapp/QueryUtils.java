@@ -93,7 +93,6 @@ public class QueryUtils {
 //            conn.setConnectTimeout(15000);
             conn.connect();
             int code = conn.getResponseCode();
-            Log.e(LOG_TAG, "RESPONSE CODE: " + code);
             if (conn.getResponseCode() == 200) {
                 inputStream = conn.getInputStream();
                 jsonString = reader(inputStream);

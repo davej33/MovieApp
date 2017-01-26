@@ -33,9 +33,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.cover_view);
 
+        // add error drawable
         Picasso.with(getContext()).load(currentMovie.getmCover())
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                 .resize(532, 800)
+                .centerCrop()
                 .into(imageView);
 
         return listItemView;

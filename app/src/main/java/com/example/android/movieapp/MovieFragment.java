@@ -1,6 +1,7 @@
 package com.example.android.movieapp;
 
 
+import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;
@@ -10,7 +11,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,9 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Movie>> {
+public class MovieFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<ArrayList<Movie>>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     // constants
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -52,26 +55,19 @@ public class MovieFragment extends Fragment implements LoaderManager.LoaderCallb
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_layout, container, false);
 
-        // set empty grid view
-        GridView gridView = (GridView) rootView.findViewById(R.id.grid_view);
-       // mEmptyTextView = (TextView) rootView.findViewById(R.id.empty_text_view);
-       // gridView.setEmptyView(mEmptyTextView);
 
-        // set grid adapter
+        GridView gridView = (GridView) rootView.findViewById(R.id.grid_view);
         mAdapter = new MovieAdapter(getActivity(), new ArrayList<Movie>());
         gridView.setAdapter(mAdapter);
-
-        // progress bar
-      //  mProgBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
         // get network connection
         ConnectivityManager connMgr = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connMgr.getActiveNetworkInfo();
         if(netInfo != null && netInfo.isConnected()){
+            setupSharedPreferences();
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(MOVIE_LOADER, null, this);
-           // mProgBar.setVisibility(View.VISIBLE);
         } else {
             mEmptyTextView.setText(R.string.empty_text);
         }
@@ -80,17 +76,31 @@ public class MovieFragment extends Fragment implements LoaderManager.LoaderCallb
         return rootView;
     }
 
+    private void setupSharedPreferences() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        pref.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
+        pref.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
 
     @Override
     public Loader<ArrayList<Movie>> onCreateLoader(int id, Bundle args) {
-        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String sortValue = pref.getString(getString(R.string.pref_sort_key), "");
+        Log.e(LOG_TAG, "SORT VALUE: " + sortValue);
         // build URI
         final String BASE_URI = "https://api.themoviedb.org/3/discover/movie?";
 
         Uri baseUri = Uri.parse(BASE_URI);
         Uri buildtUri = baseUri.buildUpon()
-                .appendQueryParameter(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default))
+                .appendQueryParameter(getString(R.string.pref_sort_key), sortValue)
                 .appendQueryParameter(getString(R.string.api_code_key), BuildConfig.MOVIE_API_VALUE)
                 .build();
         URL url = null;
@@ -116,4 +126,8 @@ public class MovieFragment extends Fragment implements LoaderManager.LoaderCallb
     }
 
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+    }
 }
