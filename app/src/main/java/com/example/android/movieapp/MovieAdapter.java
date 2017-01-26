@@ -35,6 +35,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         Picasso.with(getContext()).load(currentMovie.getmCover())
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .resize(532, 800)
                 .into(imageView);
 
         return listItemView;
