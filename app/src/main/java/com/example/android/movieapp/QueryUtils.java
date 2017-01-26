@@ -91,8 +91,8 @@ public class QueryUtils {
         try {
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-//            conn.setReadTimeout(10000);
-//            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
             conn.connect();
             int code = conn.getResponseCode();
             if (conn.getResponseCode() == 200) {

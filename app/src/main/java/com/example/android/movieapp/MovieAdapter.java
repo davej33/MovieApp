@@ -37,7 +37,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Picasso.with(getContext()).load(currentMovie.getmCover())
                 .error(R.drawable.alert)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                .resize(532, 800)
+                .resize(646, 970)
                 .placeholder(R.drawable.placeholder)
                 .centerCrop()
                 .into(imageView);
