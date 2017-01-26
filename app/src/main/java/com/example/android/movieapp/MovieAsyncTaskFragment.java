@@ -6,7 +6,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +27,9 @@ public class MovieAsyncTaskFragment extends AsyncTaskLoader {
     }
 
     @Override
-    public ArrayList<Movie> loadInBackground() {
-        ArrayList<Movie> arrayList = QueryUtils.fetchMovieData(mUrl);
+    public List<Movie> loadInBackground() {
+        List<Movie> arrayList = null;
+        arrayList = QueryUtils.fetchMovieData(mUrl);
         return arrayList;
     }
 }
