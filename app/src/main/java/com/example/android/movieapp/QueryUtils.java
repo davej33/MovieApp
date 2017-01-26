@@ -61,8 +61,10 @@ public class QueryUtils {
                 double rating = element.getDouble("vote_average");
                 String poster = element.getString("poster_path");
 
+
                 // set full URL for poster image
                 String posterURLString = BASE_IMAGE_URL + poster;
+                Log.e(LOG_TAG, "POSTER PATH " + posterURLString);
 
                 // create new movie object
                 Movie movie = new Movie(title, release, rating, plot, posterURLString);

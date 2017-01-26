@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +93,7 @@ public class MovieFragment extends Fragment
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String sortValue = pref.getString(getString(R.string.pref_sort_key), "");
-        Log.e(LOG_TAG, "SORT VALUE: " + sortValue);
+
         // build URI
         final String BASE_URI = "https://api.themoviedb.org/3/discover/movie?";
 
