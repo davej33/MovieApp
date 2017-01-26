@@ -2,14 +2,11 @@
 
     <ListPreference
         android:key="@string/pref_sort_key"
-        android:title="@string/pref_sort_by"
+        android:title="@string/pref_sort_by_title"
         android:defaultValue="0"
         android:entries="@array/sort_array"
-        android:entryValues="@array/sort_array_values"/>
+        android:entryValues="@array/sort_array_values"
+        />
 
-    <EditTextPreference
-        android:defaultValue="def"
-        android:inputType="number"
-        android:title="title" />
 
 </PreferenceScreen>

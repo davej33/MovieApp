@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -28,8 +31,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         Movie currentMovie = getItem(position);
 
-        ImageView image = (ImageView) listItemView.findViewById(R.id.cover_view);
-        image.setImageBitmap(currentMovie.getmCover());
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.cover_view);
+
+        Picasso.with(getContext()).load(currentMovie.getmCover())
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(imageView);
 
         return listItemView;
     }

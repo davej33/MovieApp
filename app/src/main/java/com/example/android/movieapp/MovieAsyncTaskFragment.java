@@ -5,6 +5,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  */
 public class MovieAsyncTaskFragment extends AsyncTaskLoader {
 
-    private String mUrl;
+    private URL mUrl;
 
-    public MovieAsyncTaskFragment(Context context, String url) {
+    public MovieAsyncTaskFragment(Context context, URL url) {
         super(context);
         mUrl = url;
     }
@@ -27,6 +28,7 @@ public class MovieAsyncTaskFragment extends AsyncTaskLoader {
 
     @Override
     public ArrayList<Movie> loadInBackground() {
-        return null;
+        ArrayList<Movie> arrayList = QueryUtils.fetchMovieData(mUrl);
+        return arrayList;
     }
 }

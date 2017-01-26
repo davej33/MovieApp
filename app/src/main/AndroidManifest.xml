@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.movieapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +26,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.movieapp.MainActivity" />
         </activity>
-        <activity android:name=".DetailActivity"></activity>
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.movieapp.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

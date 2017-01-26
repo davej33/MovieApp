@@ -1,21 +1,36 @@
 <resources>
     <string name="app_name">MovieApp</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="empty_text">No internet connection</string>
 
     <!-- Strings related to Settings -->
 
     <string name="pref_header_general">General</string>
-    <string name="pref_rating">Highest Rating</string>
-    <string name="pref_popularity">Popularity</string>
-    <string name="pref_sort_by">Sort by</string>
-    <string name="pref_sort_key">sort</string>
+
+    <string name="pref_rating_label">Highest Rating</string>
+    <string name="pref_rating_value">vote_average.desc</string>
+
+    <string name="pref_popularity_label">Popularity</string>
+    <string name="pref_popularity_value">popularity.desc</string>
+
+    <string name="pref_sort_by_title">Sort by</string>
+    <string name="pref_sort_key">sort_by</string>
+    <string name="pref_sort_default">popularity.desc</string>
+
+    <string name="api_code_key">api_key</string>
 
     <!-- Detals Page -->
     <string name="details_release_date">Release Date</string>
     <string name="details_plot">Plot</string>
     <string name="details_rating">Rating</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- json parsing -->
+    <string name="title">original_title</string>
+    <string name="plot">overview</string>
+    <string name="poster">poster_path</string>
+    <string name="popularity">popularity</string>
+    <string name="rating">vote_average</string>
+    <string name="release_date">release_date</string>
+    <string name="results">results</string>
 
 </resources>

@@ -5,7 +5,7 @@
         <item>Highest Rated</item>
     </string-array>
     <string-array name="sort_array_values">
-        <item>0</item>
-        <item>1</item>
+        <item>popularity.desc</item>
+        <item>vote_average.desc</item>
     </string-array>
 </resources>

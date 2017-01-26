@@ -9,14 +9,15 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new MovieFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new MovieFragment())
+                    .commit();
+        }
     }
 
     @Override
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id){
+        switch (id) {
             case R.id.settings_action:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);

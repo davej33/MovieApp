@@ -1,7 +1,5 @@
 package com.example.android.movieapp;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by dnj on 1/20/17.
  */
@@ -12,14 +10,16 @@ public class Movie {
     private String mDateRelease;
     private double mRating;
     private String mPlot;
-    private Bitmap mCover;
+    private String mCover;
 
-    public Movie(String t, String d, double r, String p, Bitmap c) {
+
+    public Movie(String t, String d, double r, String plot, String c) {
         mTitle = t;
         mDateRelease = d;
         mRating = r;
-        mPlot = p;
+        mPlot = plot;
         mCover = c;
+
     }
 
     public String getmTitle() {
@@ -38,7 +38,8 @@ public class Movie {
         return mPlot;
     }
 
-    public Bitmap getmCover() {
+    public String getmCover() {
         return mCover;
     }
+
 }
