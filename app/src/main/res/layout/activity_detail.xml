@@ -1,44 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#000">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/details_image_view"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"
+        app:layout_heightPercent="50%"
+        app:layout_marginPercent="2%"
+        app:layout_widthPercent="50%" />
+
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/title_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_below="@+id/details_image_view"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        app:layout_heightPercent="20%">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher"/>
-
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <LinearLayout
+        <TextView
+            android:id="@+id/movie_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="Fight Club" />
 
-            <TextView
-                android:id="@+id/n"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movie_title"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            tools:text="(1999)" />
 
-            <TextView
-                android:id="@+id/m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/movie_release_date"
+            android:layout_centerHorizontal="true"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:layout_marginTop="2dp"
+            android:rating="2"
+            android:stepSize="0.1"
+            android:theme="@style/RatingBarTheme" />
+    </android.support.percent.PercentRelativeLayout>
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/plot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:gravity="center_horizontal"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        tools:text="Title: " />
 
 
-
-
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>

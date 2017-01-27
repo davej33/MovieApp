@@ -4,6 +4,7 @@ package com.example.android.movieapp;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -14,8 +15,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.net.MalformedURLException;
@@ -35,8 +36,8 @@ public class MovieFragment extends Fragment
     // vars
     private MovieAdapter mAdapter;
     private TextView mEmptyTextView;
-    private ProgressBar mProgBar;
     private static final int MOVIE_LOADER = 0;
+    public static Movie mMovie;
 
 
     public MovieFragment() {
@@ -55,9 +56,18 @@ public class MovieFragment extends Fragment
         View rootView = inflater.inflate(R.layout.fragment_layout, container, false);
 
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.grid_view);
+        final GridView gridView = (GridView) rootView.findViewById(R.id.grid_view);
         mAdapter = new MovieAdapter(getActivity(), new ArrayList<Movie>());
         gridView.setAdapter(mAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mMovie = (Movie) gridView.getItemAtPosition(position);
+
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // get network connection
         ConnectivityManager connMgr = (ConnectivityManager) getActivity()
@@ -68,7 +78,7 @@ public class MovieFragment extends Fragment
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(MOVIE_LOADER, null, this);
         } else {
-            mEmptyTextView.setText(R.string.empty_text);
+            mEmptyTextView.setText(R.string.empty_text); // fix
         }
 
 

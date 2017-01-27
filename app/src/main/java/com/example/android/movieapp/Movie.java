@@ -8,12 +8,12 @@ public class Movie {
 
     private String mTitle;
     private String mDateRelease;
-    private double mRating;
+    private float mRating;
     private String mPlot;
     private String mCover;
 
 
-    public Movie(String t, String d, double r, String plot, String c) {
+    public Movie(String t, String d, float r, String plot, String c) {
         mTitle = t;
         mDateRelease = d;
         mRating = r;
@@ -30,7 +30,7 @@ public class Movie {
         return mDateRelease;
     }
 
-    public double getmRating() {
+    public float getmRating() {
         return mRating;
     }
 
